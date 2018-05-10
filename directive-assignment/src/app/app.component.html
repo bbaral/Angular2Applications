@@ -1,0 +1,22 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <div class="row">
+    <div class="col-sx-12">
+      <h2>Secret Password Thing</h2>
+      <br>
+      <!--<button class="btn btn-primary" (click)="showSecret = !showSecret">Display Details</button>-->
+      <br/>
+      <br/>
+      <button class="btn btn-primary" (click)="onToggleDetails()">Display Details</button>
+      <br/>
+      <br/>
+      <p *ngIf="showSecret">Secret Password = tuna</p>
+      <div *ngFor="let log of logs; let i = index"
+           [ngStyle]="{backgroundColor: i >= 4 ? 'blue' : 'transparent'}"
+           [ngClass]="{'white-text': i >= 4}">
+        {{log}}
+      </div>
+    </div>
+  </div>
+</div>
+
