@@ -1,0 +1,6 @@
+#If you have @Input() recipe then in html it should be like this
+[recipe]= ...
+
+#If you have @Output() recipe then in html it should be like this
+
+(recipe)= ...

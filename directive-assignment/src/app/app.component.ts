@@ -10,8 +10,7 @@ export class AppComponent {
   logs = [];
 
   onToggleDetails() {
-    this.showSecret = !this.showSecret;
-    // this.logs.push(this.logs.length + 1);
+    this.showSecret = true;
     this.logs.push(new Date());
   }
 }

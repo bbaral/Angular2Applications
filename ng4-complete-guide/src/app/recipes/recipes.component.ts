@@ -10,7 +10,7 @@ import {RecipeService} from './recipesService/recipe.service';
 })
 export class RecipesComponent implements OnInit {
 
-  selctedRecipe: Recipe;
+  selectedRecipe: Recipe;
 
   constructor(private recipeService: RecipeService) {
   }
@@ -19,7 +19,7 @@ export class RecipesComponent implements OnInit {
 
     this.recipeService.recipesSelected.subscribe(
       (recipe: Recipe) => {
-        this.selctedRecipe = recipe;
+        this.selectedRecipe = recipe;
       });
   }
 

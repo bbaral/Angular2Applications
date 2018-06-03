@@ -13,7 +13,7 @@ import { GameComponent } from './game/game.component';
     AppComponent,
     EvenComponent,
     OddComponent,
-    GameComponent
+    GameComponent,
   ],
   imports: [
     BrowserModule
