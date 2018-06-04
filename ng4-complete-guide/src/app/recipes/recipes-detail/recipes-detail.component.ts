@@ -20,4 +20,14 @@ export class RecipesDetailComponent implements OnInit {
     alert(this.recipe.name + ' ingredients added successfully');
   }
 
+  onEditRecipe() {
+    alert('Edit link is in process....');
+    console.log("edit was clicked!");
+  }
+
+  onDeleteRecipe() {
+    alert('Delete link is in process....');
+    console.log("deleted was clicked!");
+  }
+
 }
