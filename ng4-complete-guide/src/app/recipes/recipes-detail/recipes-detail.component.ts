@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Recipe} from '../recipes.model';
-import {RecipeService} from '../recipesService/recipe.service';
+import {Recipe} from '../../Model/recipes.model';
+import {RecipeService} from '../Services/recipe.service';
 
 @Component({
   selector: 'app-recipes-detail',
@@ -17,6 +17,7 @@ export class RecipesDetailComponent implements OnInit {
 
   onAddToShoppingList() {
     this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
+    alert(this.recipe.name + ' ingredients added successfully');
   }
 
 }

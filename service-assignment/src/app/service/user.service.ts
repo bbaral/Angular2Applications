@@ -9,11 +9,9 @@ export class UserService {
 
   private counterservice: CounterService;
 
-  constructor(counterservice1: CounterService) {
-    this.counterservice = counterservice1;
+  constructor($_counterservice: CounterService) {
+    this.counterservice = $_counterservice;
   }
-
-//constructor(private counterservice: CounterService) {}
 
   onSettoInactive(id: number) {
     this.inactiveUsers.push(this.activeUsers[id]);

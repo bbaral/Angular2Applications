@@ -3,8 +3,9 @@
     <img [src]="recipe.imagePath" [alt]="recipe.name" class="img-responsive">
   </div>
 </div>
+
 <div class="col-xs-12">
-  <h1>{{ recipe.name }}</h1>
+  <h1 [ngStyle]="{color: 'red', margin: '11px -19px'}">{{ recipe.name }}</h1>
 </div>
 <div class="row">
   <div class="col-xs-12">

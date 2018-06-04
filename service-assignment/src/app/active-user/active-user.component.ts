@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../service/user.service';
+import {CounterService} from '../service/counter.service';
 
 @Component({
   selector: 'app-active-user',

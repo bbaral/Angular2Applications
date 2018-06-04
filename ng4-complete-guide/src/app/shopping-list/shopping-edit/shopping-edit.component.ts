@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {Ingredient} from '../../shared/ingredient.model';
-import {ShoppingListService} from '../shoppingService/shopping-list.service';
+import {Ingredient} from '../../Model/ingredient.model';
+import {ShoppingListService} from '../../recipes/Services/shopping-list.service';
 
 @Component({
   selector: 'app-shopping-edit',

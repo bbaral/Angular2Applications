@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {Ingredient} from '../../shared/ingredient.model';
+import {Ingredient} from '../../Model/ingredient.model';
 
 @Injectable()
 export class ShoppingListService {
@@ -20,9 +20,6 @@ export class ShoppingListService {
   }
 
   addIngredients(ingredients: Ingredient[]) {
-    // for (let ing of ingredients) {
-    //   this.addIngredient(ing);
-    // }
     this.shoppingListIngredients.push(...ingredients);
     this.ingredientsChanged.emit(this.shoppingListIngredients.slice());
   }

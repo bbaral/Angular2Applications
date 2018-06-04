@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {LoggingService} from '../logging.service';
-import {AccountsService} from '../accounts.service';
+import {LoggingService} from '../services/logging.service';
+import {AccountsService} from '../services/accounts.service';
 
 @Component({
   selector: 'app-account',

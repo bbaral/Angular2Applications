@@ -22,12 +22,12 @@ export class DropdownDirective implements OnInit{
 
   }
 
-  @HostListener('mouseenter') mouseover(eventData: Event) {
-    this.isOpen = this.isOpen;
-  }
-
-  @HostListener('mouseleave') mouseleave(eventData: Event) {
-    this.isOpen = this.isClose;
-  }
+  // @HostListener('mouseenter') mouseover(eventData: Event) {
+  //   this.isOpen = this.isOpen;
+  // }
+  //
+  // @HostListener('mouseleave') mouseleave(eventData: Event) {
+  //   this.isOpen = !this.isOpen;
+  // }
 
 }
