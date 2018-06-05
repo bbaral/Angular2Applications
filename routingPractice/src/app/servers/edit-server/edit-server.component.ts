@@ -10,13 +10,14 @@ import {Observable} from 'rxjs';
   styleUrls: ['./edit-server.component.css']
 })
 export class EditServerComponent implements OnInit, CanDeactivateGuardService {
-  server: {id: number, name: string, status: string};
+  server: { id: number, name: string, status: string };
   serverName = '';
   serverStatus = '';
   allowEdit = false;
   changesSaved = false;
 
-  constructor(private serversService: ServersService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private serversService: ServersService, private route: ActivatedRoute, private router: Router) {
+  }
 
   ngOnInit() {
     console.log(this.route.snapshot.queryParams);
@@ -27,6 +28,9 @@ export class EditServerComponent implements OnInit, CanDeactivateGuardService {
       }
     );
     this.route.fragment.subscribe();
+    /*
+     *subscribe route params to update the id if params change
+     */
     const id = +this.route.snapshot.params['id'];
     this.server = this.serversService.getServer(id);
     this.route.params.subscribe(
@@ -48,7 +52,7 @@ export class EditServerComponent implements OnInit, CanDeactivateGuardService {
       return true;
     }
     if ((this.serverName !== this.server.name || this.serverStatus !== this.server.status) &&
-    !this.changesSaved) {
+      !this.changesSaved) {
       return confirm('Do you want to discard the changes?');
     } else {
       return true;

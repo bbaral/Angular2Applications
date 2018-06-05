@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ActivatedRoute, Data, Params, Router} from '@angular/router';
 import {ServersService} from '../servers.service';
 
 @Component({
@@ -10,15 +10,27 @@ import {ServersService} from '../servers.service';
 export class ServerComponent implements OnInit {
   server: {id: number, name: string, status: string};
 
-  constructor(private serversService: ServersService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private serversService: ServersService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
-    const id = +this.route.snapshot.params['id'];
+    /** This chunk of code can be replace with resolverService now.
+     * Look at the app-routing.module.ts. you will see the resolver interface.
+
+     const id = +this.route.snapshot.params['id'];
     this.server = this.serversService.getServer(id);
     this.route.params.subscribe(
       (params: Params) => {
         this.server = this.serversService.getServer(+params['id']);
       });
+
+     */
+
+    this.route.data.subscribe((data: Data) => {
+      this.server = data['server'];
+    });
   }
 
   onEdit() {
