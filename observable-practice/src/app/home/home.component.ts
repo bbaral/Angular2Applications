@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {Observer} from 'rxjs/Observer';
@@ -9,7 +9,7 @@ import {Subscription} from 'rxjs/Subscription';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   numObs: Subscription;
   customObs: Subscription;
@@ -47,6 +47,11 @@ export class HomeComponent implements OnInit {
       (error: string) => {console.log(error);},
       () => {console.log('task completed');}
     );
+  }
+
+  ngOnDestroy() {
+    this.numObs.unsubscribe();
+    this.customObs.unsubscribe();
   }
 
 }
