@@ -13,9 +13,9 @@ export class AppComponent {
   genders = ['male', 'female'];
 
   user = {
-    username : '',
-    email : '',
-    secretQuestion : '',
+    username: '',
+    email: '',
+    secretQuestion: '',
     answer: '',
     gender: ''
   };
@@ -56,5 +56,12 @@ export class AppComponent {
     this.user.secretQuestion = this.signUpForm.value.secret;
     this.user.answer = this.signUpForm.value.questionAnswer;
     this.user.gender = this.signUpForm.value.gender;
+
+    /**
+     * Order Matters in this case!!
+     * Here if you add this line at the beginning of onSubmit() method. It will dynamically trigger
+     * reset value and set the passed it value to empty
+     */
+    this.signUpForm.reset();
   }
 }
