@@ -75,7 +75,7 @@ export class ServerElementComponent implements
   }
 
   ngOnDestroy() {
-    console.log('ngOnDestroy called!');
+    console.log('ngOnDestroy called when element get destroy!');
   }
 
 }
