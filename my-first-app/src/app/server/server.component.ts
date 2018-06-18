@@ -8,7 +8,7 @@ import {Component} from '@angular/core';
 })
 
 export class ServerComponent {
-  serverId = 11;
+  serverId = Math.floor(Math.random() * 100) + 5;
   serverstatus = 'offline';
 
   constructor() {
