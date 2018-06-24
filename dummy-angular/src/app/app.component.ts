@@ -1,37 +1,39 @@
-import { Component } from '@angular/core';
-import {MatTableDataSource} from '@angular/material';
+import {Component, OnInit} from '@angular/core';
+import {DisputeInitiationService} from './dispute-initiation.service';
+import {ClientModel, AssociateModel, TransactionInformationModel} from './dispute.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  displayedColumns = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+export class AppComponent implements OnInit {
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+  private clientModel: ClientModel[] = [];
+  private associateModel: AssociateModel[] = [];
+  dropDownDisputeReason = [
+    {value: 'return', viewValue: 'Returns'},
+    {value: 'thirdParty', viewValue: 'Third Party Products, Including Account Assure'},
+    {value: 'payByPhone', viewValue: 'Pay By Phone or Electronic Payments'},
+    {value: 'mail', viewValue: 'Mail/Third Party/In Store Payments'},
+    {value: 'benefitsRewards', viewValue: 'Benefits/Rewards Points'},
+    {value: 'BalanceTransfer', viewValue: 'Balance Transfer Stop Payment'},
+    {value: 'purchase', viewValue: 'Purchase(s), Not Third Party Products'},
+    {value: 'cardholder', viewValue: 'Cardholder does not recognize the purchase'},
+  ];
+
+  private transactionInformationModel: TransactionInformationModel[] = [];
+  //numberOnlyMask: Array<RegExp> = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/];
+
+  date: Date = new Date();
+
+  constructor(private diService: DisputeInitiationService) {}
+
+  ngOnInit(): void {
+    this.clientModel = this.diService.getClientInformation();
+    this.associateModel = this.diService.getAssociateInformation();
+    this.transactionInformationModel = this.diService.getTransactionInformation()
   }
 }
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+

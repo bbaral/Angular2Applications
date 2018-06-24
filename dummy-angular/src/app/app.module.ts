@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import {MaterialModule} from './material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
+import {DisputeInitiationService} from './dispute-initiation.service';
+import {TextMaskModule} from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -14,9 +16,10 @@ import {FormsModule} from '@angular/forms';
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    TextMaskModule
   ],
-  providers: [],
+  providers: [DisputeInitiationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
