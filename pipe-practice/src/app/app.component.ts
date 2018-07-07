@@ -17,7 +17,7 @@ export class AppComponent {
     {
       instanceType: 'medium',
       name: 'Production Server',
-      status: 'stable',
+      status: 'offline',
       started: new Date(15, 1, 2017)
     },
     {
