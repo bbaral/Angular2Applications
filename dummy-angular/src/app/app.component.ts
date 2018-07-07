@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Inject, Input} from '@angular/core';
+import {ArticleComponent} from './article/article.component';
 
 @Component({
   selector: 'app-root',
@@ -8,26 +9,21 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/co
 })
 export class AppComponent {
 
+  @Input() val: number;
+  private likeEnabled: boolean = false;
+  private articlecomponent: ArticleComponent;
 
-  count = 0;
-  constructor(private cdr: ChangeDetectorRef) {
-    setTimeout(() => {
-      this.count++;
-      this.cdr.markForCheck();
-    }, 100);
+  constructor(@Inject(forwardRef(() => ArticleComponent)) articleComponent: ArticleComponent) {
+    this.articlecomponent = articleComponent;
   }
 
- detach() {
-    this.cdr.detach();
- }
+  likeArticle(): void {
+    this.articlecomponent.incrementLinkes();
+  }
 
-  reattach() {
-    this.cdr.reattach();
- }
-
- detect() {
-    this.cdr.detectChanges();
- }
+  setLikeEnabled(newEnabledStatus: boolean): void {
+    this.likeEnabled = newEnabledStatus
+  }
 
 }
 

@@ -1,0 +1,8 @@
+<p>{{currentDate | date}}</p>
+<h1>{{title}}</h1>
+<p>Shares: {{shareCt}}</p>
+<button (click)="share($event)">Count Share</button>
+<h3>written by: {{name}}</h3>
+<app-article [author] = "name"></app-article>
+<app-logo></app-logo>
+
