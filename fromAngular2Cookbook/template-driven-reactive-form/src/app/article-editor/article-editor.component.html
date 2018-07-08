@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="form-group">
+      <label>Article Title:</label>
+      <!--[ngModel]="title"	(ngModelChange)="title=$event"-->
+      <input type="text" class="form-control" [ngModel]="title" (ngModelChange)="article.title=$event" [formControl]="titleControl" >
+    </div>
+    <div class="form-group">
+      <label>Article Text:</label>
+      <input type="text" class="form-control" [ngModel]="information" (ngModelChange)="article.information=$event" [formControl]="informationControl">
+    </div>
+    <p>Tags:</p>
+    <ul>
+      <li *ngFor="let t of tagControls; let in = index">
+        <input [formControl]="t">
+      </li>
+    </ul>
+    <button class="btn btn-primary" (click)="addTag()">Add Tag</button>
+    <br>
+    <button class="btn btn-primary" (click)="removeTag(in)">Remove Tag</button>
+  </div>
+  <div class="row">
+      <button class="btn btn-primary" (click)="saveArticle()">Save</button>
+  </div>
+  <div class="row">
+    <h3>Preview:</h3>
+    <div	style="border:1px	solid	#999;margin:50px;">
+      <h1>{{article.title}}</h1>
+      <p>{{article.information}}</p>
+    </div>
+  </div>
+</div>

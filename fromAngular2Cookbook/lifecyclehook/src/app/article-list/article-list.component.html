@@ -1,0 +1,5 @@
+<input (keyup.enter)="add($event)">
+<article *ngFor="let title of titles; let i = index"
+         [articleTitle]="title">
+  <button (click)="remove(i)">Enter</button>
+</article>

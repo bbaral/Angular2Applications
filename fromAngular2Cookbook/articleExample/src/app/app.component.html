@@ -1,8 +1,35 @@
 <p>{{currentDate | date}}</p>
-<h1>{{title}}</h1>
+<h1 appClickToReveal>{{title}}</h1>
+
+
+<h3 [style.color]="isStale ? 'red' : 'green'">{{myTitle}}</h3>
+<input type="text" #title1
+       (keydown.enter)="setTitle(title1.value)"
+        (keyup)="checkStale(title1.value)">
+<br><br>
+
+<app-ad-section>
+<p>U.S. senators are up in arms following the recent ruling
+  stripping them of their beloved selfie sticks.</p>
+<p>A bipartisan committee drafted a resolution to smuggle
+  selfie sticks onto the floor by any means necessary.</p>
+</app-ad-section>
+
 <p>Shares: {{shareCt}}</p>
 <button (click)="share($event)">Count Share</button>
 <h3>written by: {{name}}</h3>
 <app-article [author] = "name"></app-article>
+
+<p>World Count: {{wordCount}}</p>
+<app-text-editor (countUpdate)="updateWordCount($event)"></app-text-editor>
+
+<app-article-list></app-article-list>
+
+<h1>
+  <ng-content></ng-content>{{articleTitle}}
+</h1>
+
+<app-feedback [val]="likes"></app-feedback>
+
 <app-logo></app-logo>
 

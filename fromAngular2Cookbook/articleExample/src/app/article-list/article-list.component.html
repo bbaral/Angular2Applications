@@ -1,0 +1,19 @@
+
+<!--This is a stander way of doing it-->
+<!--<div *ngFor="let article of articles; let i = index">-->
+  <!--<h1 *ngIf="article.active">-->
+    <!--{{i}}: {{article.title}}-->
+  <!--</h1>-->
+<!--</div>-->
+
+<!--this is angular way of doing it-->
+<ng-template ngFor let-article [ngForOf]="articles" let-i="index">
+  <div>
+    <ng-template [ngIf]="article.active">
+      <h1>
+        {{i}} : {{article.title}}
+      </h1>
+    </ng-template>
+  </div>
+</ng-template>
+
