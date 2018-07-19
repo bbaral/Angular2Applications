@@ -12,7 +12,8 @@ import {
   ViewChild,
   ElementRef,
   ContentChild,
-  Input, ViewEncapsulation
+  Input,
+  ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy
 } from '@angular/core';
 
 
@@ -20,7 +21,8 @@ import {
   selector: 'app-server-element',
   templateUrl: './server-element.component.html',
   styleUrls: ['./server-element.component.css'],
-  encapsulation: ViewEncapsulation.Emulated
+  encapsulation: ViewEncapsulation.Emulated,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ServerElementComponent implements
   OnInit,
@@ -31,13 +33,18 @@ export class ServerElementComponent implements
   AfterViewInit,
   AfterViewChecked,
   OnDestroy {
-  @Input('srvElement') element: {type: string, name: string, content: string};
+  @Input ('srvElement') element: {type: string, name: string, content: string};
   @Input() name: string;
+  @Input() count = 0;
   @ViewChild('heading') header: ElementRef;
   @ContentChild('contentParagraph') paragraph: ElementRef;
 
-  constructor() {
+  constructor(private cdr: ChangeDetectorRef) {
     console.log('constructor called!!');
+    setInterval(() => {
+      this.count++;
+      this.cdr.markForCheck();
+    }, 1000);
   }
 
   ngOnChanges(changes: SimpleChanges) {

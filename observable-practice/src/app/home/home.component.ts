@@ -46,9 +46,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       }, 300);
     });
     this.customObs = myObservable.subscribe(
-      (data: string) => {console.log(data);},
-      (error: string) => {console.log(error);},
-      () => {console.log('task completed');}
+      (data: string) => { console.log(data); },
+      (error: string) => {console.log(error); },
+      () => { console.log('task completed'); }
     );
   }
 
