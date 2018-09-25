@@ -13,7 +13,7 @@ import {
   ElementRef,
   ContentChild,
   Input,
-  ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy
+  ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
 
 
@@ -35,16 +35,11 @@ export class ServerElementComponent implements
   OnDestroy {
   @Input ('srvElement') element: {type: string, name: string, content: string};
   @Input() name: string;
-  @Input() count = 0;
   @ViewChild('heading') header: ElementRef;
   @ContentChild('contentParagraph') paragraph: ElementRef;
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor() {
     console.log('constructor called!!');
-    setInterval(() => {
-      this.count++;
-      this.cdr.markForCheck();
-    }, 1000);
   }
 
   ngOnChanges(changes: SimpleChanges) {

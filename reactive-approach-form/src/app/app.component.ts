@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 
@@ -12,8 +12,11 @@ export class AppComponent implements OnInit {
   signupForm: FormGroup;
   forbiddenUserName = ['max', 'andy', 'leo'];
 
+  addhobbyClickCount: number = 0;
+  scrollWindowStyles: {[name: string]: any} = {};
 
-  constructor(private formBuilder: FormBuilder) {}
+
+  constructor(private formBuilder: FormBuilder, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     /**
@@ -33,7 +36,7 @@ export class AppComponent implements OnInit {
       'gender': new FormControl('male'),
       'hobbies': new FormArray([])
     });
-    //this.signupForm.valueChanges.subscribe((value) => console.log(value));
+    // this.signupForm.valueChanges.subscribe((value) => console.log(value));
     this.signupForm.statusChanges.subscribe((status) => console.log(status));
     this.signupForm.setValue({
       'userData': {
@@ -46,6 +49,7 @@ export class AppComponent implements OnInit {
     this.signupForm.patchValue({
       'userData': {
         'username': 'max'
+      }
     });
   }
 
@@ -57,6 +61,15 @@ export class AppComponent implements OnInit {
   onAddHobby() {
     const control = new FormControl(null, Validators.required);
     (<FormArray>this.signupForm.get('hobbies')).push(control);
+    this.addhobbyClickCount = this.addhobbyClickCount + 1;
+      if (this.addhobbyClickCount > 3) {
+        this.scrollWindowStyles['overflow-y'] = 'scroll';
+        this.scrollWindowStyles['width'] = 'inherit';
+        this.scrollWindowStyles['height'] = '200px';
+        this.scrollWindowStyles['border'] = '2px solid';
+      } else {
+        return 0;
+      }
   }
 
   forbiddenNames(control: FormControl): {[s: string]: boolean} {

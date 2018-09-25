@@ -1,4 +1,6 @@
-import {Component, ChangeDetectorRef} from '@angular/core';
+import {Component} from '@angular/core';
+import * as Immutable from 'Immutable';
+
 
 @Component({
   selector: 'app-root',
@@ -7,8 +9,11 @@ import {Component, ChangeDetectorRef} from '@angular/core';
 })
 export class AppComponent {
 
+  style: {[name: string]: string} = {};
+  immutableStyle: Immutable.Map<string[], string> = Immutable.Map<string[], string>();
+
   serverElements = [{type: 'server', name: 'TestServer', content: 'Just a test!'}];
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor() {}
 
   onServerAdded(serverData: {serverName: string, serverContent: string}) {
     this.serverElements.push({
@@ -19,23 +24,19 @@ export class AppComponent {
   }
 
   onBlueprintAdded(blueprintData: {serverName: string, serverContent: string}) {
+    this.style['Color'] = 'green';
     this.serverElements.push({
       type: 'blueprint',
       name: blueprintData.serverName,
-      content: blueprintData.serverContent
+      content: blueprintData.serverContent,
     });
   }
 
   onChangeFirst() {
     this.serverElements[0].name = 'Changed!';
-    this.cdr.detach();
-  }
-
-  onChangeinsideBox() {
-    this.serverElements[0].content = 'I have been clicked';
-    setTimeout(() => {
-      this.cdr.detectChanges();
-    }, 2000);
+    if (this.serverElements[0].name === 'Changed!') {
+      this.immutableStyle.set(this.serverElements[0].name['Color'], 'red');
+    }
   }
 
   onDestroyFirst() {

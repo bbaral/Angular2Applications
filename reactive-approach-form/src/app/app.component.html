@@ -42,9 +42,11 @@
         <div formArrayName="hobbies">
           <h4>Your Hobbies</h4>
           <button class="btn btn-dark" type="button" (click)="onAddHobby()">Add Hobby</button>
+          <div [ngStyle]="scrollWindowStyles">
           <div class="form-group"
             *ngFor="let hobbyControl of signupForm.get('hobbies').controls; let i = index">
             <input type="text" class="form-control" [formControlName]="i">
+          </div>
           </div>
         </div>
         <button
